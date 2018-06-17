@@ -1,0 +1,279 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <!-- Bootstrap Styles-->
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-table.css" rel="stylesheet">
+
+    <!-- FontAwesome Styles-->
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="~/Scripts/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="~/Content/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href="~/Content/fileinput.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div>
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand" href="index.html"><img src="~/Content/image/logo2.png" /></div>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        欢迎登陆 @ViewData["ProName"]
+                    </a>
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a id="change_password_button"  class="dropdown-toggle"  href="#" aria-expanded="false">
+                        密码修改
+                    </a>
+
+                    <!-- /.dropdown-tasks -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle"  href="/Gao_Home/ExitLogin" aria-expanded="false">
+                        退出
+                    </a>
+
+                </li>
+            </ul>
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+
+            <div class="sidebar-collapse">
+                <ul class="nav">
+                    <li>
+                        <a  href="/Gao_Professor/Index"><i class="fa fa-desktop"></i>第一轮选择</a>
+                    </li>
+                    <li>
+                        <a class="active-menu" href="/Gao_Professor/SecondSelect"><i class="fa fa-dashboard"></i>第二轮选择</a>
+                    </li>
+                    <li>
+                        <a id="finalWill_url" href="#"><i class="fa fa-qrcode"></i>查看结果</a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+
+            <div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h3>
+                            <label> 截至时间:@ViewData["EndTime"]</label>
+                        </h3>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label> 申请学生列表</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <label>您还可以选择学生数量为：</label><label id="selectNum">@ViewData["SelectNum"]</label>
+                    </div>
+
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <table id="waitSelectTable" data-toggle="table" data-url="/GAO_Professor/getStudentsSecond">
+                        <thead>
+                            <tr>
+                                <th data-field="StuID">学号</th>
+                                <th data-field="StuName">姓名</th>
+                                <th data-field="Gender">性别</th>
+                                <th data-field="StuMajor">专业方向</th>
+                                <th data-field="StuGraSchool">毕业学校</th>
+                                <th data-formatter="operateFormatter" data-align='center' data-events='operateEvents'>操作</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+
+            <div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label> 已选择学生列表</label>
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <table id="selectedTable" data-toggle="table" data-url="/GAO_Professor/getStudentsOfProfessorToStudent">
+                        <thead>
+                            <tr>
+                                <th data-field="StuID">学号</th>
+                                <th data-field="StuName">姓名</th>
+                                <th data-field="Gender">性别</th>
+                                <th data-field="StuMajor">专业方向</th>
+                                <th data-field="StuGraSchool">毕业学校</th>
+                                <th data-formatter="operateFormatter2" data-align='center' data-events='operateEvents2'>操作</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+
+
+
+
+            <!-- /. ROW  -->
+        </div>
+        <!-- /. PAGE INNER  -->
+    </div>
+
+
+    <!--以下是更改密码模态框-->
+    <div class="modal" id="change_password_modal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4>更改密码</h4>
+                </div>
+                <div class="modal-body">
+                    <input id="password_input" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                    <button id="change_password_submit_button" type="button" class="btn btn-default" style="left:auto">
+                        更新
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--以上是更改密码模态框-->
+    <!-- /. PAGE WRAPPER  -->
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-table.js"></script>
+    <script src="~/Scripts/bootstrap-table-export.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="~/Scripts/jquery.metisMenu.js"></script>
+    <script src="~/Scripts/fileinput.min.js"></script>
+    <script src="~/Scripts/zh.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            var a = @ViewData["TestSettingTime"];
+            if(a==3||a==4||a==5){
+                $("#finalWill_url").attr("href","#");
+                $("#finalWill_url").click(function(){
+                    alert("不在使用时间段内");
+                })
+            }else if(a==0||a==1||a==2){
+                $("#finalWill_url").attr("href","#");
+            }else{
+                $("#finalWill_url").attr("href","/Gao_Professor/FinalStudents");
+            }
+
+            $("#change_password_button").click(function () {
+                $("#change_password_modal").modal('show');
+            })
+
+            $("#change_password_submit_button").click(function () {
+                var data = {
+                    'password': $("#password_input").val(),
+                }
+
+                $.post("/Gao_Home/changePassword", data, function (rel) {
+                    alert(rel);
+                    $("#change_password_modal").modal('hide');
+                })
+            })
+
+
+         /*   var getProfessors = function () {
+                var professors;
+                var param = {
+                    'professorName':$('#professorName').val(),
+                    'p': $("#professAll").val()
+                };
+                $.post("/Gao_Admin/searchProfessors", param, function (data) {
+                    professors = data;
+                });
+                return professors;
+            }
+            */
+        })
+
+        function operateFormatter(value, row, index) {
+
+            return [
+                  '<button type="button" class="btn btn-info">查看</button> ',
+                  '<button type="button" class="btn btn-select">选择</button> ',
+            ].join('');
+        }
+
+        function operateFormatter2(value, row, index) {
+
+            return [
+                  '<button type="button" class="btn btn-delete">删除</button> ',
+            ].join('');
+        }
+
+        window.operateEvents = {
+            'click .btn-info': function (e, value, row, index) {
+                //  console.log(row);
+                window.location.href = "/GAO_Professor/Student?id=" + row["StuID"];
+            },
+            'click .btn-select': function (e, value, row, index) {
+                //  console.log(row);
+                var data = {
+                    "StuID": row["StuID"]
+                }
+                $.post("/GAO_Professor/addSecondSelect", data, function (rel) {
+                    alert(rel);
+                    var num = parseInt($("#selectNum").text());
+                    $("#selectNum").text(num - 1);
+                    $('#selectedTable').bootstrapTable('refresh', { url: '/GAO_Professor/getStudentsOfProfessorToStudent' });
+                })
+            },
+        };
+
+        window.operateEvents2 = {
+            'click .btn-delete': function (e, value, row, index) {
+                //  console.log(row);
+                var data = {
+                    "StuID": row["StuID"]
+                }
+                $.post("/GAO_Professor/deleteSecondSelect", data, function (rel) {
+                    alert(rel);
+                    var num = parseInt( $("#selectNum").text());
+                    $("#selectNum").text(num + 1);
+                    $('#selectedTable').bootstrapTable('refresh', { url: '/GAO_Professor/getStudentsOfProfessorToStudent' });
+                })
+            },
+        };
+
+    </script>
+
+</body>
+
+</html>

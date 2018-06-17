@@ -1,0 +1,274 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <!-- Bootstrap Styles-->
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-table.css" rel="stylesheet">
+
+    <!-- FontAwesome Styles-->
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="~/Scripts/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="~/Content/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href="~/Content/fileinput.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div>
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand" href="index.html"><img src="~/Content/image/logo2.png" /></div>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="welcome" aria-expanded="false">
+
+                    </a>
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a id="change_password_button" class="dropdown-toggle" data-toggle="dropdown" href="" aria-expanded="false">
+                        密码修改
+                    </a>
+
+                    <!-- /.dropdown-tasks -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="/Gao_Home/ExitLogin" aria-expanded="false">
+                        退出
+                    </a>
+
+                </li>
+            </ul>
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+
+            <div class="sidebar-collapse">
+                <ul class="nav">
+                    <li>
+                        <a href="/Gao_Admin/Index"><i class="fa fa-desktop"></i>教师信息</a>
+                    </li>
+                    <li>
+                        <a href="/Gao_Admin/Student"><i class="fa fa-bar-chart-o"></i>学生信息</a>
+                    </li>
+                    <li>
+                        <a href="/Gao_Admin/Setting" id="timesetting"><i class="fa fa-dashboard"></i>时间节点设置</a>
+                    </li>
+                    <li>
+                        <a href="/Gao_Admin/JiaoWu" id="jiaowuinfo"  class="active-menu"><i class="fa fa-qrcode"></i>教务教师信息</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+
+            <div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2>
+                            <label>教务教师列表</label>
+                        </h2>
+                    </div>
+                </div>
+                <div class="row col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-sm-4">
+                        <button id="uploadProfessors" class="btn btn-default">上传教务教师</button>
+                        <a id="addProfessor" href="/Gao_Admin/AddJiaoWuInfo" class="btn btn-default">新增教务教师</a>
+                    </div>
+                    <div class="col-sm-3">
+  
+                    </div>
+                    <div class="col-sm-4">
+
+                    <div class="col-sm-1" style="margin-left:0px">
+                    </div>
+
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <table id="professorTable" data-toggle="table" data-url="/Gao_Admin/getJiaoWus">
+                        <thead>
+                            <tr>
+                                <th data-field="JiaoWuID">编号</th>
+                                <th data-field="JiaoWuName">姓名</th>
+                                <th data-field="JiaoWuMajor">负责专业方向</th>
+                                <th data-formatter="operateFormatter" data-align='center' data-events='operateEvents'>操作</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+
+
+
+
+            <!-- /. ROW  -->
+        </div>
+        <!-- /. PAGE INNER  -->
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+    <!--以下是批量创建教师模态框-->
+    <div class="modal" id="batchAdd-teachers-modal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4>请上传xlsx或xls文件</h4>
+                </div>
+                <div class="modal-body">
+                    <a href="~/ExcelFiles/template/教务教师批量.xlsx" class="form-control" style="margin-bottom:10px">下载导入模板</a>
+                    <input id="input-file" type="file" data-preview-file-type="text" name="file">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--以上是批量创建教师模态框-->
+    <!--以下是更改密码模态框-->
+    <div class="modal" id="change_password_modal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4>更改密码</h4>
+                </div>
+                <div class="modal-body">
+                    <input id="password_input" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                    <button id="change_password_submit_button" type="button" class="btn btn-default" style="left:auto">
+                        更新
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--以上是更改密码模态框-->
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-table.js"></script>
+    <script src="~/Scripts/bootstrap-table-export.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="~/Scripts/jquery.metisMenu.js"></script>
+    <script src="~/Scripts/fileinput.min.js"></script>
+    <script src="~/Scripts/zh.js"></script>
+
+    <script>
+
+        var userType = 0;
+        $(document).ready(function () {
+            initJaowu();
+            var $table = $('#professorTable');
+            $("#uploadProfessors").click(function () {
+
+                $("#batchAdd-teachers-modal").modal('show');
+            });
+
+            $("#change_password_button").click(function () {
+                $("#change_password_modal").modal('show');
+            })
+
+            $("#change_password_submit_button").click(function () {
+                var data = {
+                    'password': $("#password_input").val(),
+                }
+
+                $.post("/Gao_Home/changePassword", data, function (rel) {
+                    alert(rel);
+                    $("#change_password_modal").modal('hide');
+                })
+            })
+
+
+
+         /*   var getProfessors = function () {
+                var professors;
+                var param = {
+                    'professorName':$('#professorName').val(),
+                    'p': $("#professAll").val()
+                };
+                $.post("/Gao_Admin/searchProfessors", param, function (data) {
+                    professors = data;
+                });
+                return professors;
+            }
+            */
+        })
+
+        var initJaowu = function () {
+            var s = document.cookie.split("=");
+            userType = s[s.length - 1];
+            if (userType == 1) {
+                $("#timesetting").remove();
+                $("#addProfessor").remove();
+                $("#uploadProfessors").remove();
+                $("#jiaowuinfo").remove();
+                $("#welcome").text("欢迎登陆 教务教师");
+            } else {
+                $("#welcome").text("欢迎登陆 管理员");
+
+            }
+        };
+
+        function operateFormatter(value, row, index) {
+
+
+            return [
+                  '<button type="button" class="btn btn-delete"> 删除</button> ',
+            ].join('');
+        }
+
+        window.operateEvents = {
+
+            'click .btn-delete': function (e, value, row, index) {
+                //  console.log(row);
+                var data = {
+                    "UserId": row["UserID"]
+                }
+
+                var r = confirm("是否确认删除？")
+                if (r == true) {
+                    $.post("/Gao_Admin/deleteJiaoWu", data, function (rel) {
+                        alert(rel);
+                        $('#professorTable').bootstrapTable('refresh', { silent: true });
+                    })
+                }
+
+            },
+        };
+        $("#input-file").fileinput({
+            language: 'zh', //设置语言
+            uploadUrl: '/Gao_Admin/batchCreateJiaoWus',
+            allowedFileExtensions: ['xlsx', 'xls'],//接收的文件后缀
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+            /*    initialPreview: "<div class='file-preview-text'>" +
+    "<h2><i class='glyphicon glyphicon-file'></i></h2>" +
+    "~/Content/img/bb.xlsx" + "</div>",
+    */
+            previewTemplates: "<img  src=\"~/Content/img/aa.jpg\"/>",
+        });
+    </script>
+
+</body>
+
+</html>

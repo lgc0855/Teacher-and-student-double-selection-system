@@ -1,0 +1,252 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <!-- Bootstrap Styles-->
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-table.css" rel="stylesheet">
+
+    <!-- FontAwesome Styles-->
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="~/Scripts/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="~/Content/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href="~/Content/fileinput.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div>
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand" href="index.html"><img src="~/Content/image/logo2.png" /></div>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        欢迎登陆 @ViewData["userId"]
+                    </a>
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a id="change_password_button" class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        密码修改
+                    </a>
+
+                    <!-- /.dropdown-tasks -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="/Gao_Home/ExitLogin" aria-expanded="false">
+                        退出
+                    </a>
+
+                </li>
+            </ul>
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+
+            <div class="sidebar-collapse">
+                <div class="sidebar-collapse">
+                    <ul class="nav">
+                        <li>
+                            <a href="/Gao_Admin/Index"><i class="fa fa-desktop"></i>教师信息</a>
+                        </li>
+                        <li>
+                            <a href="/Gao_Admin/Student"><i class="fa fa-qrcode"></i>学生信息</a>
+                        </li>
+                        <li>
+                            <a href="/Gao_Admin/Setting" id="timesetting"><i class="fa fa-dashboard"></i>时间节点设置</a>
+                        </li>
+                        <li>
+                            <a href="/Gao_Admin/JiaoWu" id="jiaowuinfo"><i class="fa fa-qrcode"></i>教务教师信息</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+
+            <div>
+                <form action="/Gao_Admin/addJiaoWu">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓名</label>
+                            <input name="JiaoWuName" v" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                        </div>
+                        <div class="col-sm-6">
+                            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;编号</label>
+                            <input  name="JiaoWuID"  required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;方向 </label>
+                            <select name="JiaoWuMajorID"  class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                                <option value="0">软件工程与管理</option>
+                                <option value="1">虚拟现实与应用</option>
+                                <option value="2">人工智能</option>
+                                <option value="3">大数据技术与应用</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                        </div>
+                        <div class="col-sm-4">
+                            <label style="visibility:hidden"> </label>
+                            <button type="submit" class="btn btn-default" style="right:auto">
+                                确认提交信息
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+
+
+                <!-- /. ROW  -->
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+
+        <!--以下是更改密码模态框-->
+        <div class="modal" id="change_password_modal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4>更改密码</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input id="password_input" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                        <button id="change_password_submit_button" type="button" class="btn btn-default" style="left:auto">
+                            更新
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--以上是更改密码模态框-->
+        <!-- /. PAGE WRAPPER  -->
+        <!-- /. WRAPPER  -->
+        <!-- JS Scripts-->
+        <!-- jQuery Js -->
+        <script src="~/Scripts/jquery-1.10.2.js"></script>
+        <!-- Bootstrap Js -->
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/Scripts/bootstrap-table.js"></script>
+        <script src="~/Scripts/bootstrap-table-export.js"></script>
+        <!-- Metis Menu Js -->
+        <script src="~/Scripts/jquery.metisMenu.js"></script>
+        <script src="~/Scripts/fileinput.min.js"></script>
+        <script src="~/Scripts/zh.js"></script>
+
+        <script>
+        $(document).ready(function () {
+
+            $("#change_password_button").click(function () {
+                $("#change_password_modal").modal('show');
+            })
+
+            $("#change_password_submit_button").click(function () {
+                var data = {
+                    'password': $("#password_input").val(),
+                }
+
+                $.post("/Gao_Home/changePassword", data, function (rel) {
+                    alert(rel);
+                    $("#change_password_modal").modal('hide');
+                })
+            })
+
+
+
+            $("#btnUploadFile").click(function () {
+
+                $("#uploadFileModal").modal('show');
+            });
+
+            initInfo(@ViewData["StuMajorID"] , @ViewData["StuIfWork"] );
+            initResume();
+            initJaowu();
+
+            $("#deleteFile").click(function(){
+                var data = {
+                    "StuID":$("#StuID").val(),
+                    "path":$("#resumeName").attr("name"),
+                }
+                $.post("/Gao_Student/deleteResume",data,function(re){
+                    alert(re);
+                })
+            });
+
+            $("#confirmUpload").click(function(){
+                var data = {
+                }
+                $.post("/Gao_Student/confirmUpload",data,function(re){
+                    alert(re);
+                })
+            });
+        })
+        var initJaowu = function () {
+            var s = document.cookie.split("=");
+            var type = s[s.length - 1];
+            if (type == 1) {
+                $("#timesetting").remove();
+                $("#jiaowuinfo").remove();
+            }
+        };
+
+        var initResume = function(){
+            var s = $("#resumeName").attr("name");
+            var names = new Array();
+            names = s.split("\\");
+            $("#resumeName").text(names[names.length-1]);
+        }
+
+
+        var initInfo = function (StuMajorID, StuIfWork) {
+            $("#StuMajorIDSelset").val(StuMajorID);
+            if(StuIfWork == 1 ){
+                $("#StuIfWorkSelect").val("true");
+            }else{
+                $("#StuIfWorkSelect").val("false");
+            }
+        }
+
+        $("#input-file").fileinput({
+            language: 'zh', //设置语言
+            uploadUrl: '/Gao_Student/uploadFile',
+            allowedFileExtensions: ['docx', 'doc'],//接收的文件后缀
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+            /*    initialPreview: "<div class='file-preview-text'>" +
+    "<h2><i class='glyphicon glyphicon-file'></i></h2>" +
+    "~/Content/img/bb.xlsx" + "</div>",
+    */
+            previewTemplates: "<img  src=\"~/Content/img/aa.jpg\"/>",
+        });
+        </script>
+
+</body>
+
+</html>

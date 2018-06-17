@@ -3,3 +3,27 @@
 ################################################################################
 
 /.vs/config
+/GaoMengWeb/App_Data
+/GaoMengWeb/App_Start
+/GaoMengWeb/bin
+/GaoMengWeb/Content
+/GaoMengWeb/fonts
+/GaoMengWeb/obj
+/GaoMengWeb/Properties
+/GaoMengWeb/resume/15211001
+/GaoMengWeb/Scripts
+/GaoMengWeb/Web.Release.config
+/GaoMengWeb/Web.Debug.config
+/GaoMengWeb/Web.config
+/GaoMengWeb/Startup.cs
+/GaoMengWeb/Project_Readme.html
+/GaoMengWeb/packages.config
+/GaoMengWeb/Global.asax.cs
+/GaoMengWeb/Global.asax
+/GaoMengWeb/GaoMengWeb.csproj.user
+/GaoMengWeb/GaoMengWeb.csproj
+/GaoMengWeb/favicon.ico
+/GaoMengWeb/App_Start.zip
+/GaoMengWeb/ApplicationInsights.config
+/packages
+/GaoMengWeb.sln

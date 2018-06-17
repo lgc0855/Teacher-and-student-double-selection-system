@@ -1,0 +1,379 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <!-- Bootstrap Styles-->
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-table.css" rel="stylesheet">
+
+    <!-- FontAwesome Styles-->
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="~/Scripts/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="~/Content/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href="~/Content/fileinput.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div>
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand" href="index.html"><img src="~/Content/image/logo2.png" /></div>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" id="welcome" href="#" aria-expanded="false">
+                    </a>
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a id="change_password_button"  class="dropdown-toggle"  href="#" aria-expanded="false">
+                        密码修改
+                    </a>
+
+                    <!-- /.dropdown-tasks -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="/Gao_Home/ExitLogin" aria-expanded="false">
+                        退出
+                    </a>
+
+                </li>
+            </ul>
+        </nav>
+        <nav class="navbar-default navbar-side" role="navigation">
+
+            <div class="sidebar-collapse">
+                <ul class="nav">
+                    <li>
+                        <a href="/Gao_Admin/Index"><i class="fa fa-desktop"></i>教师信息</a>
+                    </li>
+                    <li>
+                        <a href="/Gao_Admin/Student"><i class="fa fa-qrcode"></i>学生信息</a>
+                    </li>
+                    <li>
+                        <a href="/Gao_Admin/Setting" id="timesetting"><i class="fa fa-dashboard"></i>时间节点设置</a>
+                    </li>
+                    <li>
+                        <a href="/Gao_Admin/JiaoWu" id="jiaowuinfo"><i class="fa fa-qrcode"></i>教务教师信息</a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+
+            <div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓名</label>
+                        <input id="StuName" name="StuName" value="@ViewData["StuName"]" readonly required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                    </div>
+                    <div class="col-sm-6">
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学号</label>
+                        <input id="StuID" name="StuID" value="@ViewData["StuID"]" readonly required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;年龄 </label>
+                        <input name="Age" id="Age"  value="@ViewData["Age"]" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                    </div>
+                    <div class="col-sm-6">
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;专业 </label>
+                        <select name="StuMajorID" id="StuMajorIDSelset" class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                            <option value="0">软件工程与管理</option>
+                            <option value="1">虚拟现实与应用</option>
+                            <option value="2">人工智能</option>
+                            <option value="3">大数据技术与应用</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话 </label>
+                        <input name="StuTel" id="StuTel" value="@ViewData["StuTel"]" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                    </div>
+                    <div class="col-sm-6">
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在职 </label>
+                        <select name="StuIfWork" id="StuIfWorkSelect" class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                            <option value="false">不在职工作</option>
+                            <option value="true">在职工作</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    
+                    <div class="col-sm-6" >
+                        <label style="margin-top: 20px;height: 34px;border-radius:3px ; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学生简历</label>
+                        <a  href="@ViewData["StuResumeUrl"]" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;">下载简历</a>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮箱 </label>
+                        <input id="StuMail" name="StuMail" value="@ViewData["StuMail"]" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8">
+
+                    </div>
+                    <div class="col-sm-4">
+                        <label style="visibility:hidden">更改信息</label>
+                        <button id="changeInfo"  class="btn btn-default ">
+                            确认更新信息
+                        </button>
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第一志愿</label>
+                        <input name="StuName" value="@ViewData["StuFirstWillName"]" readonly required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                    </div>
+                    <div class="col-sm-6">
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第二志愿</label>
+                        <input name="StuName" value="@ViewData["StuSecondWillName"]" readonly required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                    </div>
+                    
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最终导师</label>
+                        <input id="StuID" name="StuID" value="@ViewData["StuFinalWillName"]" readonly required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                    </div>
+                    <div class="col-sm-6">
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;调剂导师</label>
+                        <input id="ProName" name="ProID" placeholder="导师姓名" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                    </div>
+
+                    <div class="col-sm-4" >
+                        <label style="visibility:hidden">调剂导师</label>
+                        <button id="changeFinalWill" class="btn btn-default" >
+                            确认更新志愿
+                        </button>                    
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        
+                    </div>
+                    <div class="col-sm-4">
+                        <label style="visibility:hidden">调剂导师</label>
+                        <a href="/Gao_Admin/FileEx?id=@ViewData["StuID"]" class="btn btn-default ">
+                            导出结果
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+            <!-- /. ROW  -->
+        </div>
+        <!-- /. PAGE INNER  -->
+        <!-- /. PAGE INNER  -->
+    </div>
+
+    <!--以下是更改密码模态框-->
+    <div class="modal" id="change_password_modal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4>更改密码</h4>
+                </div>
+                <div class="modal-body">
+                    <input id="password_input" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                    <button id="change_password_submit_button" type="button" class="btn btn-default" style="left:auto">
+                        更新
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--以上是更改密码模态框-->
+
+
+    <!-- /. PAGE WRAPPER  -->
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-table.js"></script>
+    <script src="~/Scripts/bootstrap-table-export.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="~/Scripts/jquery.metisMenu.js"></script>
+    <script src="~/Scripts/fileinput.min.js"></script>
+    <script src="~/Scripts/zh.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+           // var $StuMajorIDSelsets = .children();
+            var smid = @ViewData["StuMajorID"];
+            $("#StuMajorIDSelset").children().eq(smid).attr("selected",true);
+            initJaowu();
+
+            $("#changeInfo").click(function(){
+                var data = {
+                    'StuName':$("#StuName").val(),
+                    'StuID':$("#StuID").val(),
+                    'Age':$("#Age").val(),
+                    'StuMajorID': $('#StuMajorIDSelset').val(),
+                    'StuTel':$('#StuTel').val(),
+                    'StuIfWork':$("#StuIfWorkSelect").val(),
+                    'StuMail':$("#StuMail").val()
+                }
+
+                $.post('/Gao_Admin/changeStudentInfo',data,function(rel){
+                    alert(rel);
+                })
+            });
+
+
+            $("#change_password_button").click(function () {
+                $("#change_password_modal").modal('show');
+            })
+
+            $("#change_password_submit_button").click(function () {
+                var data = {
+                    'password': $("#password_input").val(),
+                }
+
+                $.post("/Gao_Home/changePassword", data, function (rel) {
+                    alert(rel);
+                    $("#change_password_modal").modal('hide');
+                })
+            })
+
+
+            $("#changeFinalWill").click(function () {
+                var data = {
+                    "ProName": $("#ProName").val(),
+                    "StuID":@ViewData["StuID"],
+                };
+                $.post("/Gao_Admin/changeFinalWill",data,function(rel){
+                    alert(rel);
+                    location.reload();
+                })
+            });
+
+         /*   var getProfessors = function () {
+                var professors;
+                var param = {
+                    'professorName':$('#professorName').val(),
+                    'p': $("#professAll").val()
+                };
+                $.post("/Gao_Admin/searchProfessors", param, function (data) {
+                    professors = data;
+                });
+                return professors;
+            }
+            */
+        })
+        var initJaowu = function () {
+            var s = document.cookie.split("=");
+            var type = s[s.length - 1];
+            if (type == 1) {
+                $("#timesetting").remove();
+                $("#welcome").text("欢迎登陆 教务教师");
+                $("#jiaowuinfo").remove();
+                $("#changeInfo").remove();
+            }else{
+                $("#welcome").text("欢迎登陆 管理员");
+            }
+        };
+        function operateFormatter(value, row, index) {
+
+            return [
+                  '<button type="button" class="btn btn-info">查看</button> ',
+                  '<button type="button" class="btn btn-select">选择</button> ',
+            ].join('');
+        }
+
+        function operateFormatter2(value, row, index) {
+
+            return [
+                  '<button type="button" class="btn btn-delete">删除</button> ',
+            ].join('');
+        }
+
+        window.operateEvents = {
+            'click .btn-info': function (e, value, row, index) {
+                //  console.log(row);
+                var data = {
+                    "UserId": row["UserId"]
+                }
+                window.location.href = "/Gao_Admin/ProfessorInformation?UserId="+data.UserId;
+            },
+            'click .btn-select': function (e, value, row, index) {
+                //  console.log(row);
+                var data = {
+                    "StuID": row["StuID"]
+                }
+                $.post("/GAO_Professor/addFirstSelect", data, function (rel) {
+                    alert(rel);
+                    var num = parseInt($("#selectNum").text());
+                    $("#selectNum").text(num - 1);
+                    $('#selectedTable').bootstrapTable('refresh', { url: '/GAO_Professor/getStudentsOfProfessorToStudent' });
+                })
+            },
+        };
+
+        window.operateEvents2 = {
+            'click .btn-delete': function (e, value, row, index) {
+                //  console.log(row);
+                var data = {
+                    "StuID": row["StuID"]
+                }
+                $.post("/GAO_Professor/deleteFirstSelect", data, function (rel) {
+                    alert(rel);
+                    var num = parseInt( $("#selectNum").text());
+                    $("#selectNum").text(num + 1);
+                    $('#selectedTable').bootstrapTable('refresh', { url: '/GAO_Professor/getStudentsOfProfessorToStudent' });
+                })
+            },
+        };
+
+    </script>
+
+</body>
+
+</html>

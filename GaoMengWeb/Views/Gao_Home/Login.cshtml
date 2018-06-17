@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>软件学院研究生双选系统</title>
+    <link href="~/Content/style.css" rel='stylesheet' type='text/css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="App Loction Form,Login Forms,Sign up Forms,Registration Forms,News latter Forms,Elements" . />
+</head>
+<body>
+    <div class="app-location">
+
+        <div class="location"><img src="~/Content/image/logo.png" class="img-responsive" alt="" /></div>
+        <h2>欢迎登陆师生双选系统</h2>
+        <form action="/Gao_Home/DoLogin">
+            <input type="text" required="required" name="userId" class="text" value="请输入学号或教师编号" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '请输入学号或教师编号';}">
+            <input type="password" required="required" name="Passwd" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+            <br />
+            <span style="color:white;">
+                <input type="radio" name="userType" value="0" checked>管理员
+                <input type="radio" name="userType" value="1">教务
+                <input type="radio" name="userType" value="2">导师
+                <input type="radio" name="userType" value="3">学生
+            </span>
+                <div class="submit"><input type="submit" value="登陆"></div>
+
+</form>
+        <input id="error" value="@ViewData["ERROR"]" style="visibility:hidden" />
+    </div>
+    <script type="application/x-javascript">
+
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script>
+        $(document).ready(function () {
+            var message = $("#error").val();
+            if(message.toString() == "" ){
+
+            }else{
+                alert(message);
+            }
+        })
+
+    </script>
+</body>
+</html>
