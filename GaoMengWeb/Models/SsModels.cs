@@ -34,7 +34,7 @@ namespace GaoMengWeb.Models
         public int id { get; set; }
         public int UserID { get; set; }
 
-        public int StuID { get; set; } //学号 1
+        public string StuID { get; set; } //学号 1
         public string StuName { get; set; } //姓名1
         public bool Gender { get; set; } //性别
         public int Age { get; set; }
@@ -85,7 +85,7 @@ namespace GaoMengWeb.Models
         [Key, Column(Order = 0)]
         public int ProID { get; set; }
         [Key, Column(Order = 1)]
-        public int StuID { get; set; } //学号
+        public string StuID { get; set; } //学号
     }
 
 

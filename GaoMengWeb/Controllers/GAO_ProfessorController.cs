@@ -219,7 +219,7 @@ namespace GaoMengWeb.Controllers
             return rel;
         }
 
-        public ActionResult Student(int id)
+        public ActionResult Student(string id)
         {
             int st = dbhelper.testSettingTime();
             ViewData["TestSettingTime"] = st;
@@ -279,7 +279,7 @@ namespace GaoMengWeb.Controllers
             return View();
         }
 
-        public string addFirstSelect(int StuID)
+        public string addFirstSelect(string StuID)
         {
             string rel = "";
             HttpCookie accountCookie = Request.Cookies["Account"];
@@ -289,7 +289,7 @@ namespace GaoMengWeb.Controllers
             return rel;
         }
 
-        public string addSecondSelect(int StuID)
+        public string addSecondSelect(string StuID)
         {
             string rel = "";
             HttpCookie accountCookie = Request.Cookies["Account"];
@@ -350,7 +350,7 @@ namespace GaoMengWeb.Controllers
             return rel;
         }
 
-        public string deleteFirstSelect(int StuID)
+        public string deleteFirstSelect(string StuID)
         {
             string rel = "";
             HttpCookie accountCookie = Request.Cookies["Account"];
@@ -360,7 +360,7 @@ namespace GaoMengWeb.Controllers
             return rel;
         }
 
-        public string deleteSecondSelect(int StuID)
+        public string deleteSecondSelect(string StuID)
         {
             string rel = "";
             HttpCookie accountCookie = Request.Cookies["Account"];
@@ -385,7 +385,7 @@ namespace GaoMengWeb.Controllers
 
         private class ProfessorStudent
         {
-            public int StuID { get; set; }
+            public string StuID { get; set; }
             public string StuName { get; set; } //姓名1
             public string Gender { get; set; } //性别
             public string StuGraSchool { get; set; }//毕业学校

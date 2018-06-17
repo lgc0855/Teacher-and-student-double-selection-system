@@ -22,7 +22,7 @@ namespace GaoMengWeb.Controllers
         public ActionResult Index()
         {
             HttpCookie accountCookie = Request.Cookies["Account"];
-            int userId = int.Parse(accountCookie["userId"]);
+            string userId = accountCookie["userId"];
             List<Student> list = dbhelper.getStudentByStuID(userId);
             if(list.Count >0)
             {
@@ -77,7 +77,7 @@ namespace GaoMengWeb.Controllers
 
             HttpCookie accountCookie = Request.Cookies["Account"];
 
-            int userId = int.Parse(accountCookie["userId"]);
+            string userId = accountCookie["userId"];
             List<Student> list = dbhelper.getStudentByStuID(userId);
             if (list.Count > 0)
             {
@@ -105,7 +105,7 @@ namespace GaoMengWeb.Controllers
             int st = dbhelper.testSettingTime();
             ViewData["TestSettingTime"] = st;
             HttpCookie accountCookie = Request.Cookies["Account"];
-            int userId = int.Parse(accountCookie["userId"]);
+            string userId =accountCookie["userId"];
             List<Student> list = dbhelper.getStudentByStuID(userId);
             if (list.Count > 0)
             {
@@ -172,7 +172,7 @@ namespace GaoMengWeb.Controllers
             else
             {
                 ViewData["userId"] = int.Parse(accountCookie["userId"]);
-                int userId = int.Parse(accountCookie["userId"]);
+                string userId =accountCookie["userId"];
                 List<Student> list = dbhelper.getStudentByStuID(userId);
                 if (list.Count > 0)
                 {
@@ -216,7 +216,7 @@ namespace GaoMengWeb.Controllers
                 }
 
                 file.SaveAs(savePath);
-                dbhelper.saveResumeUrl(int.Parse(accountCookie["userId"]), "/resume/ " + accountCookie["userId"] + "/"+ file.FileName);
+                dbhelper.saveResumeUrl(accountCookie["userId"], "/resume/ " + accountCookie["userId"] + "/"+ file.FileName);
             }
             catch (Exception e)
             {
@@ -226,13 +226,13 @@ namespace GaoMengWeb.Controllers
         }
 
 
-        public ActionResult saveInfo(string StuName, int StuID, int Age, int StuMajorID, string StuTel, string StuMail, bool StuIfWork)
+        public ActionResult saveInfo(string StuName, string StuID, int Age, int StuMajorID, string StuTel, string StuMail, bool StuIfWork)
         {
             bool b = dbhelper.updateStudent(StuName, StuID, Age, StuMajorID, StuTel, StuMail, StuIfWork);
             return RedirectToAction("Index", "GAO_Student");
         }
 
-        public string deleteResume(int StuID,  string path)
+        public string deleteResume(string StuID,  string path)
         {
             try
             {
@@ -253,7 +253,7 @@ namespace GaoMengWeb.Controllers
         public string confirmUpload()
         {
             HttpCookie accountCookie = Request.Cookies["Account"];
-            bool b = dbhelper.studentConfirm(int.Parse(accountCookie["userId"]));
+            bool b = dbhelper.studentConfirm(accountCookie["userId"]);
             if (b)
             {
                 return "已确认";
@@ -268,7 +268,7 @@ namespace GaoMengWeb.Controllers
         {
             string rel = "";
             HttpCookie accountCookie = Request.Cookies["Account"];
-            int id = int.Parse(accountCookie["userId"]);
+            string id =accountCookie["userId"];
             SsContext db = new SsContext();
             List<Student> list = db.Students.Where(s => s.StuID == id).ToList();
             if (list.Count <= 0)
@@ -292,7 +292,7 @@ namespace GaoMengWeb.Controllers
         public void FileEx()
         {
             HttpCookie accountCookie = Request.Cookies["Account"];
-            int id = int.Parse(accountCookie["userId"]);
+            string id = accountCookie["userId"];
             List<Student> list = dbhelper.getStudentByStuID(id);
             if (list.Count <= 0)
             {

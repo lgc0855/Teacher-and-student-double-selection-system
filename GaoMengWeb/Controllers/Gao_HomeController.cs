@@ -33,7 +33,7 @@ namespace GaoMengWeb.Controllers
             return View();
         }
 
-        public ActionResult DoLogin(int userId = -1, string Passwd="0000" , int userType=-1)
+        public ActionResult DoLogin(string userId = "-1", string Passwd="0000" , int userType=-1)
         {
             if (ModelState.IsValid)
             {
@@ -41,7 +41,7 @@ namespace GaoMengWeb.Controllers
 
                 if(userType == 0)
                 {
-                    if (testAdmin(list, userId, Passwd))
+                    if (testAdmin(list, int.Parse(userId), Passwd))
                     {
                         HttpCookie accountCookie = new HttpCookie("Account");
                         accountCookie["userId"] = userId.ToString();
@@ -53,7 +53,7 @@ namespace GaoMengWeb.Controllers
                     }
                 }else if (userType == 1)
                 {
-                    if (testJiaoWu(userId, Passwd))
+                    if (testJiaoWu(int.Parse(userId), Passwd))
                     {
                         HttpCookie accountCookie = new HttpCookie("Account");
                         accountCookie["userId"] = userId.ToString();
@@ -72,7 +72,7 @@ namespace GaoMengWeb.Controllers
                         return RedirectToAction("Login", "Gao_Home", new { error = "不在使用时间内" });
                     }
 
-                    if (testProfessor(userId, Passwd))
+                    if (testProfessor(int.Parse(userId), Passwd))
                     {
                         HttpCookie accountCookie = new HttpCookie("Account");
                         accountCookie["userId"] = userId.ToString();
@@ -107,7 +107,7 @@ namespace GaoMengWeb.Controllers
                 }
 
             }
-            if(userId == -1)
+            if(userId.Equals("-1"))
             {
                 return RedirectToAction("Login", "Gao_Home", new { error = "请正确填写用户名和密码" });
             }
@@ -177,7 +177,7 @@ namespace GaoMengWeb.Controllers
             return false;
         }
 
-        private bool testStudent(int userId, string Passwd)
+        private bool testStudent(string userId, string Passwd)
         {
             List<Student> ps = dbhelper.getStudentByStuID(userId);
             if (ps.Count == 0)
@@ -203,7 +203,7 @@ namespace GaoMengWeb.Controllers
             HttpCookie accountCookie = Request.Cookies["Account"];
             int id = int.Parse(accountCookie["userId"]);
             int type = int.Parse(accountCookie["type"]);
-            bool b = dbhelper.changePassword(type, id, password);
+            bool b = dbhelper.changePassword(type, id.ToString(), password);
             if (b)
             {
                 rel = "修改成功";

@@ -453,7 +453,7 @@ namespace GaoMengWeb.Models
             return u;
         }
 
-        public List<Student> getStudentByStuID(int id)
+        public List<Student> getStudentByStuID(string id)
         {
             SsContext db = new SsContext();
             List<Student> list = db.Students.Where(s => s.StuID == id).ToList();
@@ -486,7 +486,7 @@ namespace GaoMengWeb.Models
          * 
          * 
          * */
-        public bool changeStudentWilleState(int pid, int StuID, int index ,  int value)
+        public bool changeStudentWilleState(int pid, string StuID, int index ,  int value)
         {
             SsContext db = new SsContext();
             List<Student> list = db.Students.Where(s => s.StuID == StuID).ToList();
@@ -534,7 +534,7 @@ namespace GaoMengWeb.Models
             return ps;
         }
 
-        public bool updateStudent(string StuName, int StuID, int Age, int StuMajorID, string StuTel, string StuMail, bool StuIfWork)
+        public bool updateStudent(string StuName, string StuID, int Age, int StuMajorID, string StuTel, string StuMail, bool StuIfWork)
         {
             SsContext db = new SsContext();
             List<Student> list = db.Students.Where(s => s.StuID == StuID).ToList();
@@ -555,7 +555,7 @@ namespace GaoMengWeb.Models
             }
         }
 
-        public bool addStudent( string StuName, int StuID, int Age, int StuMajorID, string StuTel, string StuMail, bool StuIfWork)
+        public bool addStudent( string StuName, string StuID, int Age, int StuMajorID, string StuTel, string StuMail, bool StuIfWork)
         {
             SsContext db = new SsContext();
             Student s = new Student();
@@ -614,7 +614,7 @@ namespace GaoMengWeb.Models
             ss.SaveChanges();
             return "成功";
         }
-        public bool saveResumeUrl(int id ,string path)
+        public bool saveResumeUrl(string id ,string path)
         {
             SsContext db = new SsContext();
             List<Student> list = db.Students.Where(s => s.StuID == id).ToList();
@@ -631,7 +631,7 @@ namespace GaoMengWeb.Models
             }
         }
 
-        public bool studentConfirm(int id)
+        public bool studentConfirm(string id)
         {
             SsContext db = new SsContext();
             List<Student> list = db.Students.Where(s => s.StuID == id).ToList();
@@ -660,7 +660,7 @@ namespace GaoMengWeb.Models
             return "未设定";
         }
 
-        public bool studentConfirmWill(int id, int first, int second)
+        public bool studentConfirmWill(string id, int first, int second)
         {
             SsContext db = new SsContext();
             List<Student> list = db.Students.Where(s => s.StuID == id).ToList();
@@ -712,7 +712,7 @@ namespace GaoMengWeb.Models
             return null;
         }
 
-        public string addProfessorToStudent( int pid, int StuID)
+        public string addProfessorToStudent( int pid, string StuID)
         {
             SsContext db = new SsContext();
             try
@@ -753,7 +753,7 @@ namespace GaoMengWeb.Models
             return "操作成功";
         }
 
-        public string deleteProfessorToStudent(int pid, int StuID)
+        public string deleteProfessorToStudent(int pid, string StuID)
         {
             try
             {
@@ -798,7 +798,7 @@ namespace GaoMengWeb.Models
             return returnList;
         }
 
-        private Student getStudentBySid(int id)
+        private Student getStudentBySid(string id)
         {
             SsContext db = new SsContext();
             List<Student> plist = db.Students.Where(s => s.StuID == id).ToList();
@@ -844,18 +844,18 @@ namespace GaoMengWeb.Models
             }
         }
 
-        public bool changePassword(int type,int id,string password)
+        public bool changePassword(int type,string id,string password)
         {
             SsContext db = new SsContext();
             if (type == 2)
             {
-                Professor p = getProfessorByPid(id);
-                id = p.UserID;
+                Professor p = getProfessorByPid(int.Parse(id));
+                id = p.UserID.ToString();
 
             }else if (type == 3)
             {
                 Student s = getStudentBySid(id);
-                id = s.UserID;
+                id = s.UserID.ToString();
             }
 
             User u = db.Users.Find(id);
@@ -915,7 +915,7 @@ namespace GaoMengWeb.Models
 
         }
 
-        public string changeStudentInfo(string StuName, int StuID, int Age, int StuMajorID, string StuTel, bool StuIfWork, string StuMail)
+        public string changeStudentInfo(string StuName, string StuID, int Age, int StuMajorID, string StuTel, bool StuIfWork, string StuMail)
         {
             SsContext db = new SsContext();
             string rel = "";

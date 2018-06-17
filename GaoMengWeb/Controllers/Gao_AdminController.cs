@@ -212,13 +212,13 @@ namespace GaoMengWeb.Controllers
             return View("Index");
         }
 
-        public ActionResult addStudent(string StuName, int StuID, int Age, int StuMajorID, string StuTel, string StuMail, bool StuIfWork)
+        public ActionResult addStudent(string StuName, string StuID, int Age, int StuMajorID, string StuTel, string StuMail, bool StuIfWork)
         {
             bool b = dbhelper.addStudent(StuName, StuID, Age, StuMajorID, StuTel, StuMail, StuIfWork);
             return RedirectToAction("Student", "Gao_Admin");
         }
 
-        public ActionResult StudentInfo(int id)
+        public ActionResult StudentInfo(string id)
         {
             List<Student> list = dbhelper.getStudentByStuID(id);
             if (list.Count > 0)
@@ -683,7 +683,7 @@ namespace GaoMengWeb.Controllers
                     if (tempName != "")
                     {
                         student = new Student();
-                        student.StuID = int.Parse(tempId);
+                        student.StuID = tempId;
                         student.StuName = tempName;
                         if (tempGender.Equals("男"))
                         {
@@ -906,7 +906,7 @@ namespace GaoMengWeb.Controllers
         }
 
 
-        public string changeFinalWill(string ProName, int StuID)
+        public string changeFinalWill(string ProName, string StuID)
         {
             Professor p = dbhelper.getProfessorByProName(ProName);
             if (p == null)
@@ -1114,7 +1114,7 @@ namespace GaoMengWeb.Controllers
         }
 
 
-        public string deleteSelect(int StuID , int ProID)
+        public string deleteSelect(string StuID , int ProID)
         {
             string rel = "";
             rel = dbhelper.deleteProfessorToStudent(ProID, StuID);
@@ -1123,7 +1123,7 @@ namespace GaoMengWeb.Controllers
             return rel;
         }
 
-        public string selectStudentToProfessor(int StuID, int ProID)
+        public string selectStudentToProfessor(string StuID, int ProID)
         {
             string rel = "";
             List<Student> list = dbhelper.getStudentByStuID(StuID);
@@ -1182,7 +1182,7 @@ namespace GaoMengWeb.Controllers
         }
 
 
-        public void FileEx( int id)
+        public void FileEx(string id)
         {
             List<Student> list = dbhelper.getStudentByStuID(id);
             if (list.Count <= 0)
@@ -1279,7 +1279,7 @@ namespace GaoMengWeb.Controllers
             return rel;
 
         }
-        public string changeStudentInfo(string StuName , int StuID, int Age , int StuMajorID, string StuTel ,bool StuIfWork, string StuMail)
+        public string changeStudentInfo(string StuName , string StuID, int Age , int StuMajorID, string StuTel ,bool StuIfWork, string StuMail)
         {
             string rel = dbhelper.changeStudentInfo(StuName, StuID, Age, StuMajorID, StuTel, StuIfWork, StuMail);
             return rel;
@@ -1300,7 +1300,7 @@ namespace GaoMengWeb.Controllers
         {
             public int Order { set; get; }
             public int UserId { set; get; }
-            public int StuID { set; get; }
+            public string StuID { set; get; }
             public string StuName { set; get; }
             public string StuInfoChecked { get; set; }//信息是否提交 1
             public string StuWillChecked { get; set; }//是否两个志愿提交 1
@@ -1309,7 +1309,7 @@ namespace GaoMengWeb.Controllers
 
         private class ProfessorStudent
         {
-            public int StuID { get; set; }
+            public string StuID { get; set; }
             public string StuName { get; set; } //姓名1
             public bool Gender { get; set; } //性别
             public string StuGraSchool { get; set; }//毕业学校
