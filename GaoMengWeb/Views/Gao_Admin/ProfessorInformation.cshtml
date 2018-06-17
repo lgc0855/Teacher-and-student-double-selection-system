@@ -108,7 +108,7 @@
                     <div class="row" >
                         <div class="col-sm-6" >
                             <label style="margin-top: 20px;height: 34px;border-radius:3px ; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;介绍页面URL</label>
-                            <input name="ProInfoUrl"   value="@ViewData["ProInfoUrl"]" required readonly class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                            <input name="ProInfoUrl"   value="@ViewData["ProInfoUrl"]" required  class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
                         </div>
                         <div class="col-sm-6">
                             <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在招收学生数 </label>
@@ -132,12 +132,12 @@
                     
                     <div class="col-sm-6">
                         <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学号 </label>
-                        <input id="StuID" required type="number" class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                        <input id="StuID" required  class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
                     </div>
                     <div class="col-sm-6">
                         <label style="visibility:hidden">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;隐藏 </label>
                         <button id="addStudent" class="btn btn-default send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
-                            确认添加
+                            查找并添加
                         </button>
                     </div>
                 </div>
@@ -292,10 +292,20 @@
                     "StuID": $("#StuID").val(),
                     "ProID":@ViewData["ProID"],
                 } ;
-                $.post("/GAO_Admin/selectStudentToProfessor",data,function(rel){
-                    alert(rel);
-                    $('#selectedTable').bootstrapTable('refresh', { url: '/GAO_Professor/getStudentsOfProfessorToStudent' });
+                $.post("/GAO_Admin/findStudent",data,function(rel){
+                    var stu = JSON.parse(rel);
+                    var r=confirm(stu.StuName);//window.confirm("Press a button");  
+                    if (r==true)  
+                    {  
+                        if(stu.isFound=="true"){
+                            $.post("/GAO_Admin/selectStudentToProfessor",data,function(rel){
+                                alert(rel);
+                                $('#selectedTable').bootstrapTable('refresh', { url: '/GAO_Professor/getStudentsOfProfessorToStudent' });
+                            })
+                        }
+                    }  
                 })
+                
             });
         })
 

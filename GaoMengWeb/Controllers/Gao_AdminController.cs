@@ -1285,6 +1285,19 @@ namespace GaoMengWeb.Controllers
             return rel;
         }
 
+        public string findStudent(string StuID)
+        {
+            List<Student> list = dbhelper.getStudentByStuID(StuID);
+            if(list.Count > 0)
+            {
+                return "{ \"isFound\":\"true\" , \"StuName\":"+ "\"" + list[0].StuName+"\" }";
+            }
+            else
+            {
+               return "{ \"isFound\":\"false\" , \"StuName\":" + "\"" + "该学生不存在" + "\" }";
+            }
+        }
+
 
         public class AdminProfessor
         {

@@ -456,7 +456,7 @@ namespace GaoMengWeb.Models
         public List<Student> getStudentByStuID(string id)
         {
             SsContext db = new SsContext();
-            List<Student> list = db.Students.Where(s => s.StuID == id).ToList();
+            List<Student> list = db.Students.Where(s => s.StuID.Equals(id)).ToList();
             return list;
         }
 
