@@ -89,17 +89,17 @@
                         </h2>
                     </div>
                 </div>
-                    <div class="row col-md-12 col-sm-12 col-xs-12">
-                        <div class="col-sm-3">
+                    <div class="row col-md-12 col-sm-12 col-xs-12" id="toolbar">
+                        <div class="col-sm-5">
                             <button id="uploadProfessors" class="btn btn-default">上传教师</button>
                             <a id="addProfessor" href="/Gao_Admin/AddProfessorInfo"  class="btn btn-default">新增教师</a>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="dataTables_filter" id="dataTables-example_filter">
-                                <label><input id="professorName" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="vmName" data-sort-order="desc" data-show-export="true"  type="search"></label>
+                                <label><input id="professorName" placeholder="搜索教师姓名" class="form-control input-sm"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="vmName" data-sort-order="desc" data-show-export="true"  type="search"></label>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="dataTables_filter"  id="dataTables-example_length">
                                 <label>
                                     <select id="professAll" name="dataTables-example_length" class="form-control input-sm" aria-controls="dataTables-example">
@@ -116,7 +116,7 @@
                     </div>
 
                     <div class="col-md-12 col-sm-12 col-xs-12">
-                        <table id="professorTable" data-toggle="table" data-url="/Gao_Admin/getProfessors?p=0">
+                        <table id="professorTable" data-toggle="table" data-url="/Gao_Admin/getProfessors?p=0" data-pagination="true"  data-show-columns="true" data-toolbar="#toolbar">
                             <thead>
                                 <tr>
                                     <th data-field="ProName">姓名</th>

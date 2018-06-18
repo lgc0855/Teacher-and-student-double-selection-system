@@ -145,9 +145,10 @@ namespace GaoMengWeb.Controllers
             return View();
         }
 
-        public ActionResult saveProfessorInfo(string ProName, int ProID, string ProTitle, int ProMaxNum, string ProInfoUrl, int ProNum)
+        public ActionResult saveProfessorInfo(string ProName, int ProID, string ProTitle, int ProMaxNum, string ProInfoUrl, int ProNum ,string password)
         {
             string rel = dbhelper.updateProfessor(ProName, ProID, ProTitle, ProMaxNum, ProInfoUrl, ProNum);
+            dbhelper.changePassword(2, ProID.ToString(), password);
             return View("Index");
         }
 
