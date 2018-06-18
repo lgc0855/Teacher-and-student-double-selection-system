@@ -846,19 +846,24 @@ namespace GaoMengWeb.Models
 
         public bool changePassword(int type,string id,string password)
         {
+            int userId;
             SsContext db = new SsContext();
             if (type == 2)
             {
                 Professor p = getProfessorByPid(int.Parse(id));
-                id = p.UserID.ToString();
+                userId = p.UserID;
 
             }else if (type == 3)
             {
                 Student s = getStudentBySid(id);
-                id = s.UserID.ToString();
+                userId = s.UserID;
+            }
+            else
+            {
+                userId = int.Parse(id);
             }
 
-            User u = db.Users.Find(id);
+            User u = db.Users.Find(userId);
             if (u != null)
             {
                 try
