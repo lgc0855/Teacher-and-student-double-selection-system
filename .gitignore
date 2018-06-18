@@ -14,7 +14,6 @@
 /GaoMengWeb/Scripts
 /GaoMengWeb/Web.Release.config
 /GaoMengWeb/Web.Debug.config
-/GaoMengWeb/Web.config
 /GaoMengWeb/Startup.cs
 /GaoMengWeb/Project_Readme.html
 /GaoMengWeb/packages.config
@@ -29,3 +28,6 @@
 /GaoMengWeb.sln
 /GaoMengWeb/ExcelFiles/学生批量导入 _5_.xlsx
 /.vs/GaoMengWeb/v14
+/.vs/GaoMengWeb/DesignTimeBuild
+/.vs/GaoMengWeb/v15/Server/sqlite3
+/.vs/GaoMengWeb/v15
