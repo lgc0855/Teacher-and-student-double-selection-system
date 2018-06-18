@@ -89,7 +89,7 @@
                         </h2>
                     </div>
                 </div>
-                    <div class="row col-md-12 col-sm-12 col-xs-12">
+                    <div class="row col-md-12 col-sm-12 col-xs-12" id="toolbar">
                         <div class="col-sm-5">
                             <button id="uploadProfessors" class="btn btn-default">上传教师</button>
                             <a id="addProfessor" href="/Gao_Admin/AddProfessorInfo"  class="btn btn-default">新增教师</a>
@@ -116,7 +116,7 @@
                     </div>
 
                     <div class="col-md-12 col-sm-12 col-xs-12">
-                        <table id="professorTable" data-toggle="table" data-url="/Gao_Admin/getProfessors?p=0">
+                        <table id="professorTable" data-toggle="table" data-url="/Gao_Admin/getProfessors?p=0" data-pagination="true"  data-show-columns="true" data-toolbar="#toolbar">
                             <thead>
                                 <tr>
                                     <th data-field="ProName">姓名</th>
