@@ -601,6 +601,7 @@ namespace GaoMengWeb.Controllers
                 string tempStuTel;
                 string tempStuMail;
                 string tempStuIfWork;
+                string tempStuMajor;
 
                 int idcol = -11;
                 int namecol = -11;
@@ -608,9 +609,10 @@ namespace GaoMengWeb.Controllers
              //   int Agecol = -11;
                 int StuGraSchoolcol = -11;
                 int StuGraMajorcol = -11;
+                int StuMajorcol = -11;
              //   int StuTelcol = -11;
-               // int StuMailcol = -11;
-               // int StuIfWorkcol = -11;
+             // int StuMailcol = -11;
+             // int StuIfWorkcol = -11;
                 int idrow = -11;
                 //int maxnumcol = -11;
                 CellRange[] cellrange = sheet.Cells;
@@ -646,6 +648,10 @@ namespace GaoMengWeb.Controllers
                         {
                             StuGraMajorcol = j;
                         }
+                        else if (tempId.Equals("专业方向"))
+                        {
+                            StuMajorcol = j;
+                        }
                         /*      else if (tempId.Equals("电话"))
                              {
                                  StuTelcol = j;
@@ -676,16 +682,34 @@ namespace GaoMengWeb.Controllers
                     tempName = cellrange[i * col + namecol].Value;
                     tempGender = cellrange[i * col + Gendercol].Value;
                 //    tempAge = cellrange[i * col + Agecol].Value;
-                    tempStuGraSchool = cellrange[i * col + StuGraSchoolcol].Value;
-                    tempStuGraMajor = cellrange[i * col + StuGraMajorcol].Value;
-                //    tempStuTel = cellrange[i * col + StuTelcol].Value;
-                //    tempStuMail = cellrange[i * col + StuMailcol].Value;
-                //    tempStuIfWork = cellrange[i * col + StuIfWorkcol].Value;
+                  //  tempStuGraSchool = cellrange[i * col + StuGraSchoolcol].Value;
+                  //  tempStuGraMajor = cellrange[i * col + StuGraMajorcol].Value;
+                    tempStuMajor = cellrange[i * col + StuMajorcol].Value;
+                    //    tempStuTel = cellrange[i * col + StuTelcol].Value;
+                    //    tempStuMail = cellrange[i * col + StuMailcol].Value;
+                    //    tempStuIfWork = cellrange[i * col + StuIfWorkcol].Value;
                     if (tempName != "")
                     {
                         student = new Student();
                         student.StuID = tempId;
                         student.StuName = tempName;
+                        if (tempStuMajor.Equals("软件工程与管理"))
+                        {
+                            student.StuMajorID = 0;
+                        }else if (tempStuMajor.Equals("虚拟现实与应用"))
+                        {
+                            student.StuMajorID = 1;
+                        }
+                        else if (tempStuMajor.Equals("人工智能"))
+                        {
+                            student.StuMajorID = 2;
+                        }
+                        else if (tempStuMajor.Equals("大数据技术与应用"))
+                        {
+                            student.StuMajorID = 3;
+                        }
+
+
                         if (tempGender.Equals("男"))
                         {
                             student.Gender = true;
@@ -695,8 +719,8 @@ namespace GaoMengWeb.Controllers
                             student.Gender = false;
                         }
                       //  student.Age = int.Parse(tempAge);
-                        student.StuGraSchool = tempStuGraSchool;
-                        student.StuGraMajor = tempStuGraMajor;
+                       // student.StuGraSchool = tempStuGraSchool;
+                      //  student.StuGraMajor = tempStuGraMajor;
                     //    student.StuTel = tempStuTel;
                   //      student.StuMail = tempStuMail;
                         if (tempGender.Equals("是"))
