@@ -3,6 +3,43 @@
 
 <head>
     <meta charset="utf-8" />
+    <style>
+        span {
+            float: left;
+            display: inline-block;
+            height: 40px;
+        }
+
+        input {
+            border: 0 none;
+        }
+
+        .box {
+            width: 300px;
+            height: 300px;
+            background-color: #808000;
+            margin: 33px auto;
+            padding: 30px;
+        }
+
+        .span1 {
+            width: 150px;
+            position: relative;
+        }
+
+        .input {
+            height: 20px;
+            width: 140px;
+            padding: 10px 5px;
+            position: absolute;
+            top: 0;
+        }
+
+        .button {
+            height: 40px;
+            font: normal 18px/40px "微软雅黑";
+        }
+    </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
     <!-- Bootstrap Styles-->
@@ -18,8 +55,8 @@
     <!-- Google Fonts-->
     <link href="~/Content/fileinput.min.css" rel="stylesheet" />
     <style>
-        .rowStyle{
-            font-size:small
+        .rowStyle {
+            font-size: small
         }
     </style>
 </head>
@@ -84,41 +121,6 @@
 
             <div>
                 <div class="row">
-                    <div class="col-sm-12">
-                        <h1>
-                            <label>教师列表</label>
-                        </h1>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="dataTables_filter" id="dataTables-example_filter">
-                            <input id="professorName" required class="send-text" style=" margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <button id="searchProfessors" class="btn btn-default">搜索</button>
-                    </div>
-
-                </div>
-
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <table id="professorTable" data-toggle="table" data-url="/Gao_Admin/getProfessors?p=0" data-row-style="rowStyle">
-                        <thead>
-                            <tr>
-                                <th data-field="Order" style="font-size:small">序号</th>
-                                <th data-field="ProName">名字</th>
-                                <th data-field="ProTitle">职称</th>
-                                <th data-field="ProMaxNum">最多名额</th>
-                                <th data-formatter="operateFormatter" data-align='center' data-events='operateEvents'>详情</th>
-                                <th data-formatter="operateFormatter2" data-align='center' data-events='operateEvents2'>第一志愿</th>
-                                <th data-formatter="operateFormatter3" data-align='center' data-events='operateEvents3'>第二志愿</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-
-                <div class="row">
                     <div class="col-sm-5">
                         <label>第一志愿</label>
                         <input id="first" value="" readonly required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
@@ -135,6 +137,42 @@
                     </div>
 
                 </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h1>
+                            <label>  &nbsp; 教师列表</label>
+                        </h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="dataTables_filter" id="dataTables-example_filter">
+                            <input id="professorName" placeholder="搜索教师姓名" required class="send-text" style=" margin-left:15px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <button id="searchProfessors" class="btn btn-default" style="margin-left:-280px;">搜索</button>
+                    </div>
+
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <table id="professorTable" data-toggle="table" data-url="/Gao_Admin/getProfessors?p=0" data-row-style="rowStyle">
+                        <thead>
+                            <tr>
+                                <th data-field="Order" style="font-size:small">序号</th>
+                                <th data-field="ProName">姓名</th>
+                                <th data-field="ProTitle">职称</th>
+
+                                <th data-formatter="operateFormatter" data-align='center' data-events='operateEvents'>详情</th>
+                                <th data-formatter="operateFormatter2" data-align='center' data-events='operateEvents2'>第一志愿</th>
+                                <th data-formatter="operateFormatter3" data-align='center' data-events='operateEvents3'>第二志愿</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+
             </div>
 
 
@@ -285,8 +323,9 @@
                 var data = {
                     'UserId': row["UserId"]
                 }
-                window.location.href = "/GAO_Student/ProfessorInformation?UserId=" + data.UserId;
-
+                //window.location.href = "/GAO_Student/ProfessorInformation?UserId=" + data.UserId;
+                //这里需要换一个url
+                window.location.href = ProfessorInformation(data.UserId).
             },
         };
 

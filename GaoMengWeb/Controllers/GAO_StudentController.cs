@@ -210,7 +210,7 @@ namespace GaoMengWeb.Controllers
             var savePath = Path.Combine(severPath, file.FileName);
             try
             {
-                if (string.Empty.Equals(file.FileName) || (".doc" != Path.GetExtension(file.FileName) && ".docx" != Path.GetExtension(file.FileName)))
+                if (string.Empty.Equals(file.FileName) || (".doc" != Path.GetExtension(file.FileName) && ".docx" != Path.GetExtension(file.FileName) && ".pdf" != Path.GetExtension(file.FileName)))
                 {
                     throw new Exception("文件格式不正确");
                 }

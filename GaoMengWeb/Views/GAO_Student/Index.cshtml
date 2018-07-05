@@ -97,13 +97,13 @@
                         </div>
                         <div class="col-sm-6">
                             <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;专业 </label>
-                            <select  name="StuMajorID" id="StuMajorIDSelset"  class="send-text"style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;" >
+                            <select name="StuMajorID" id="StuMajorIDSelset" readonly class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
                                 <option value="0">软件工程与管理</option>
                                 <option value="1">虚拟现实与应用</option>
                                 <option value="2">人工智能</option>
                                 <option value="3">大数据技术与应用</option>
-                            </select>                       
-                         </div>
+                            </select>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
@@ -112,28 +112,35 @@
                         </div>
                         <div class="col-sm-6">
                             <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在职 </label>
-                            <select  name="StuIfWork" id="StuIfWorkSelect" class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                            <select name="StuIfWork" id="StuIfWorkSelect" class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
                                 <option value="false">不在职工作</option>
                                 <option value="true">在职工作</option>
-                            </select>                            
-                         </div>
+                            </select>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
                             <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮箱 </label>
                             <input name="StuMail" value="@ViewData["StuMail"]" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
                         </div>
+
+                    </div>
+                    <div class="row">
                         <div class="col-sm-6">
-                            <label style="visibility:hidden">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;隐藏 </label>
+                            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学校 </label>
+                            <input name="StuMail" value="@ViewData["StuMail"]" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                        </div>
+                        <div class="col-sm-6">
+                            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;专业 </label>
+                            <input name="StuTel" value="@ViewData["StuTel"]" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-sm-6">
                         </div>
                         <div class="col-sm-6">
-                            <label style="visibility:hidden">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;隐藏 </label>
-                            <button  type="submit" class="btn btn-default" style="right:auto">
+
+                            <button type="submit" class="btn btn-default" style="right:auto">
                                 更新个人信息
                             </button>
                         </div>
@@ -336,7 +343,7 @@
         $("#input-file").fileinput({
             language: 'zh', //设置语言
             uploadUrl: '/Gao_Student/uploadFile',
-            allowedFileExtensions: ['docx', 'doc'],//接收的文件后缀
+            allowedFileExtensions: ['docx', 'doc', 'pdf'],//接收的文件后缀
             previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
             /*    initialPreview: "<div class='file-preview-text'>" +
     "<h2><i class='glyphicon glyphicon-file'></i></h2>" +
