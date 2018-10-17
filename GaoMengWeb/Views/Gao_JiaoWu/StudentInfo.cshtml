@@ -1,0 +1,264 @@
+﻿
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <!-- Bootstrap Styles-->
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-table.css" rel="stylesheet">
+
+    <!-- FontAwesome Styles-->
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="~/Scripts/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="~/Content/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href="~/Content/fileinput.min.css" rel="stylesheet" />
+
+    <style>
+        input {
+            border: none !important;
+            outline: none;
+            background: transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand" href="index.html"><img src="~/Content/image/logo2.png" /></div>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" id="welcome" href="#" aria-expanded="false">
+                    </a>
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a id="change_password_button" class="dropdown-toggle" href="#" aria-expanded="false">
+                        密码修改
+                    </a>
+
+                    <!-- /.dropdown-tasks -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="/Gao_Home/ExitLogin" aria-expanded="false">
+                        退出
+                    </a>
+
+                </li>
+            </ul>
+        </nav>
+        <nav class="navbar-default navbar-side" role="navigation">
+
+            <div class="sidebar-collapse">
+                <ul class="nav">
+                    <li>
+                        <a class="active-menu" href="/Gao_JiaoWu/Student"><i class="fa fa-desktop"></i>学生列表</a>
+                    </li>
+                    <li>
+                        <a href="/Gao_JiaoWu/Professor"><i class="fa fa-qrcode"></i>教师列表</a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+
+            <div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓名</label>
+                        <input id="StuName" readonly name="StuName" value="@ViewData["StuName"]" readonly required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                    </div>
+                    <div class="col-sm-6">
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学号</label>
+                        <input id="StuID" readonly name="StuID" value="@ViewData["StuID"]" readonly required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;年龄 </label>
+                        <input name="Age" readonly id="Age" value="@ViewData["Age"]" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                    </div>
+                    <div class="col-sm-6">
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;专业 </label>
+                        <input name="Age" readonly id="StuMajorIDInput"  required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话 </label>
+                        <input name="StuTel" readonly id="StuTel" value="@ViewData["StuTel"]" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                    </div>
+                    <div class="col-sm-6">
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在职 </label>
+                        <input readonly id="StuIfWork"  required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-sm-6">
+                        <label style="margin-top: 20px;height: 34px;border-radius:3px ; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学生简历</label>
+                        <a href="@ViewData["StuResumeUrl"]" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;">下载简历</a>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮箱 </label>
+                        <input id="StuMail" name="StuMail" readonly value="@ViewData["StuMail"]" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                    </div>
+                </div>
+
+
+         
+
+
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第一志愿</label>
+                        <input name="StuName" readonly value="@ViewData["StuFirstWillName"]" readonly required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                    </div>
+                    <div class="col-sm-6">
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第二志愿</label>
+                        <input name="StuName" readonly value="@ViewData["StuSecondWillName"]" readonly required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最终导师</label>
+                        <input id="StuID" readonly name="StuID" value="@ViewData["StuFinalWillName"]" readonly required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                    </div>
+                    <div class="col-sm-6">
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;调剂导师</label>
+                        <input id="ProName" name="ProID" readonly  required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+            <!-- /. ROW  -->
+        </div>
+        <!-- /. PAGE INNER  -->
+        <!-- /. PAGE INNER  -->
+    </div>
+
+    <!--以下是更改密码模态框-->
+    <div class="modal" id="change_password_modal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4>更改密码</h4>
+                </div>
+                <div class="modal-body">
+                    <input id="password_input" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                    <button id="change_password_submit_button" type="button" class="btn btn-default" style="left:auto">
+                        更新
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--以上是更改密码模态框-->
+    <!-- /. PAGE WRAPPER  -->
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-table.js"></script>
+    <script src="~/Scripts/bootstrap-table-export.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="~/Scripts/jquery.metisMenu.js"></script>
+    <script src="~/Scripts/fileinput.min.js"></script>
+    <script src="~/Scripts/zh.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+           // var $StuMajorIDSelsets = .children();
+            var smid = @ViewData["StuMajorID"];
+            var array = ["软件工程与管理", "虚拟现实与应用", "人工智能","大数据技术与应用"];
+            $("#StuMajorIDInput").val(array[smid]);
+            var smid2 = @ViewData["StuIfWork"];
+            var array2 = ["不在职工作", "在职工作"];
+            $("#StuIfWork").val(array2[smid2]);
+            initJaowu();
+
+            
+
+
+            $("#change_password_button").click(function () {
+                $("#change_password_modal").modal('show');
+            })
+
+            $("#change_password_submit_button").click(function () {
+                var data = {
+                    'password': $("#password_input").val(),
+                }
+
+                $.post("/Gao_Home/changePassword", data, function (rel) {
+                    alert(rel);
+                    $("#change_password_modal").modal('hide');
+                })
+            })
+
+
+           
+        })
+        var initJaowu = function () {
+            var s = document.cookie.split("=");
+            var type = s[s.length - 1];
+            if (type == 1) {
+                $("#timesetting").remove();
+                $("#welcome").text("欢迎登陆 教务教师");
+                $("#jiaowuinfo").remove();
+                $("#changeInfo").remove();
+            }else{
+                $("#welcome").text("欢迎登陆 管理员");
+            }
+        };
+
+
+    </script>
+
+</body>
+
+</html>

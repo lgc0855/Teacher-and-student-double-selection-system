@@ -262,13 +262,14 @@
         function operateFormatter(value, row, index) {
 
             return [
-                  '<button type="button" class="btn btn-info"> 查看</button> ',
-                  '<button type="button" class="btn btn-delete"> 删除</button> ',
+                '<button type="button" class="btn btn-info btn-detail"> 查看</button> ',
+                '<button type="button" class="btn btn-delete"> 删除</button> ',
+                '<button type="button" class="btn btn-info btn-reset-passwd"> 重置密码</button> ',
             ].join('');
         }
 
         window.operateEvents = {
-            'click .btn-info': function (e, value, row, index) {
+            'click .btn-detail': function (e, value, row, index) {
                 //  console.log(row);
                 window.location.href = "/Gao_Admin/StudentInfo?id=" + row["StuID"];
             },
@@ -286,8 +287,22 @@
                     })
                 }
 
-                
+
             },
+            'click .btn-reset-passwd': function (e, value, row, index) {
+                //  console.log(row);
+                var data = {
+                    "UserId": row["UserId"]
+                }
+                var r = confirm("是否确认重置该学生的密码(重置后为其学号)？")
+                if (r == true) {
+                    $.post("/Gao_Admin/resetStuPasswd", data, function (data) {
+                        alert(data);
+                    })
+                }
+
+
+            }
         };
         $("#input-file").fileinput({
             language: 'zh', //设置语言

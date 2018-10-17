@@ -1,0 +1,247 @@
+﻿
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <!-- Bootstrap Styles-->
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-table.css" rel="stylesheet">
+
+    <!-- FontAwesome Styles-->
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="~/Scripts/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="~/Content/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href="~/Content/fileinput.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div>
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand" href="index.html"><img src="~/Content/image/logo2.png" /></div>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="welcome" aria-expanded="false">
+                    </a>
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a id="change_password_button" class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        密码修改
+                    </a>
+
+                    <!-- /.dropdown-tasks -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="/Gao_Home/ExitLogin" aria-expanded="false">
+                        退出
+                    </a>
+
+                </li>
+            </ul>
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+
+            <div class="sidebar-collapse">
+                <div class="sidebar-collapse">
+                    <ul class="nav">
+                        <li>
+                            <a href="/Gao_JiaoWu/Student"><i class="fa fa-desktop"></i>学生列表</a>
+                        </li>
+                        <li>
+                            <a class="active-menu" href="/Gao_JiaoWu/Professor"><i class="fa fa-qrcode"></i>教师列表</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+
+            <div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓名&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                            <span  class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;display:inline-block">@ViewData["ProName"]</span>
+                        </div>
+                        <div class="col-sm-6">
+                            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;工号&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                            <span class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;display:inline-block">@ViewData["ProID"]</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;职称&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                            <span class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;display:inline-block">@ViewData["ProTitle"]</span>
+                        </div>
+                        <div class="col-sm-6">
+                            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在招收学生数 </label>
+                            <span class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;display:inline-block">@ViewData["ProNum"]</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label style="margin-top: 20px;height: 34px;border-radius:3px ; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;介绍页面URL</label>
+                            <span class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;display:inline-block">@ViewData["ProInfoUrl"]</span>
+                        </div>
+                    </div>
+
+
+                <hr style="border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);" />
+
+                
+
+                <div class="row" style="padding-top:10px;margin-bottom：25px">
+                    <div class="col-sm-12">
+                        <label> 已选择学生列表</label>
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <table id="selectedTable" data-toggle="table" data-url="/Gao_Admin/getStudentsOfProfessorToStudent?id=@ViewData["ProID"]">
+                        <thead>
+                            <tr>
+                                <th data-field="StuID">学号</th>
+                                <th data-field="StuName">姓名</th>
+                                <th data-field="Gender">性别</th>
+                                <th data-field="StuMajor">专业方向</th>
+                                <th data-field="StuGraSchool">毕业学校</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+            </div>
+
+
+
+            <!-- /. ROW  -->
+        </div>
+        <!-- /. PAGE INNER  -->
+    </div>
+
+
+    <!--以下是更改密码模态框-->
+    <div class="modal" id="change_password_modal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4>更改密码</h4>
+                </div>
+                <div class="modal-body">
+                    <input id="password_input" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                    <button id="change_password_submit_button" type="button" class="btn btn-default" style="left:auto">
+                        更新
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--以上是更改密码模态框-->
+    <!-- /. PAGE WRAPPER  -->
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-table.js"></script>
+    <script src="~/Scripts/bootstrap-table-export.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="~/Scripts/jquery.metisMenu.js"></script>
+    <script src="~/Scripts/fileinput.min.js"></script>
+    <script src="~/Scripts/zh.js"></script>
+
+    <script>
+        
+        var initJaowu = function () {
+            var s = document.cookie.split("=");
+            var type = s[s.length - 1];
+            if (type == 1) {
+                $("#timesetting").remove();
+                $("#welcome").text("欢迎登陆 教务教师");
+                $("#jiaowuinfo").remove();
+                $("#change_pInfo").remove();
+            }else{
+                $("#welcome").text("欢迎登陆 管理员");
+            }
+        };
+
+
+        $(document).ready(function () {
+
+            $("#change_password_button").click(function () {
+                $("#change_password_modal").modal('show');
+            })
+
+            $("#change_password_submit_button").click(function () {
+                var data = {
+                    'password': $("#password_input").val(),
+                }
+
+                $.post("/Gao_Home/changePassword", data, function (rel) {
+                    alert(rel);
+                    $("#change_password_modal").modal('hide');
+                })
+            })
+
+
+            
+
+            initJaowu();
+
+            //initInfo(@ViewData["StuMajorID"] , @ViewData["StuIfWork"] );
+           // initResume();
+            
+
+           
+
+        })
+
+
+
+        var initResume = function(){
+            var s = $("#resumeName").attr("name");
+            var names = new Array();
+            names = s.split("\\");
+            $("#resumeName").text(names[names.length-1]);
+        }
+
+
+        var initInfo = function (StuMajorID, StuIfWork) {
+            $("#StuMajorIDSelset").val(StuMajorID);
+            if(StuIfWork == 1 ){
+                $("#StuIfWorkSelect").val("true");
+            }else{
+                $("#StuIfWorkSelect").val("false");
+            }
+        }
+        
+    </script>
+
+</body>
+
+</html>

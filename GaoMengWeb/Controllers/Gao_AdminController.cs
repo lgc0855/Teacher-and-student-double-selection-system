@@ -693,18 +693,18 @@ namespace GaoMengWeb.Controllers
                         student = new Student();
                         student.StuID = tempId;
                         student.StuName = tempName;
-                        if (tempStuMajor.Equals("软件工程与管理"))
+                        if (tempStuMajor.Trim().Equals("软件工程与管理"))
                         {
                             student.StuMajorID = 0;
-                        }else if (tempStuMajor.Equals("虚拟现实与应用"))
+                        }else if (tempStuMajor.Trim().Equals("虚拟现实技术与应用"))
                         {
                             student.StuMajorID = 1;
                         }
-                        else if (tempStuMajor.Equals("人工智能"))
+                        else if (tempStuMajor.Trim().Equals("人工智能"))
                         {
                             student.StuMajorID = 2;
                         }
-                        else if (tempStuMajor.Equals("大数据技术与应用"))
+                        else if (tempStuMajor.Trim().Equals("大数据技术与应用"))
                         {
                             student.StuMajorID = 3;
                         }
@@ -931,6 +931,22 @@ namespace GaoMengWeb.Controllers
             return "删除失败";
         }
 
+        public string resetStuPasswd(int UserId)
+        {
+            List<Student> list = dbhelper.getStudentByUserID(UserId);
+            Student s = new Student();
+            if (list.Count <= 0)
+                return "密码重置失败";
+            else
+                s = list[0];
+            bool b = dbhelper.changePassword(3, s.StuID, s.StuID);
+            if (b)
+            {
+                return "密码重置成功";
+            }
+            return "密码重置失败";
+        }
+
 
         public string changeFinalWill(string ProName, string StuID)
         {
@@ -1138,6 +1154,8 @@ namespace GaoMengWeb.Controllers
             }
             return rel;
         }
+
+
 
 
         public string deleteSelect(string StuID , int ProID)

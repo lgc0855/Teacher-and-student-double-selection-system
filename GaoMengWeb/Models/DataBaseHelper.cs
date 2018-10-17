@@ -867,6 +867,13 @@ namespace GaoMengWeb.Models
                 Student s = getStudentBySid(id);
                 userId = s.UserID;
             }
+            else if (type == 1)
+            {
+                if (getJiaoWuByJId(Int32.Parse(id)).Count > 0)
+                    userId = getJiaoWuByJId(Int32.Parse(id))[0].UserID;
+                else
+                    userId = -1;
+            }
             else
             {
                 userId = int.Parse(id);

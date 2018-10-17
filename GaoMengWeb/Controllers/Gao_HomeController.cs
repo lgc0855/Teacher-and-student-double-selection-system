@@ -70,7 +70,7 @@ namespace GaoMengWeb.Controllers
                         accountCookie["type"] = userType.ToString();
                         accountCookie.Expires = DateTime.Now.AddMinutes(120);
                         Response.Cookies.Add(accountCookie);
-                        return RedirectToAction("Index", "Gao_Admin");
+                        return RedirectToAction("Professor", "Gao_JiaoWu");
                     }
                 }
                 else if (userType == 2)

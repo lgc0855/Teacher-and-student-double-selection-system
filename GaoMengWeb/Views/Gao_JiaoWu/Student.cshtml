@@ -1,0 +1,248 @@
+﻿
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <!-- Bootstrap Styles-->
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-table.css" rel="stylesheet">
+
+    <!-- FontAwesome Styles-->
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="~/Scripts/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="~/Content/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href="~/Content/fileinput.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div>
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand" href="index.html"><img src="~/Content/image/logo2.png" /></div>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="welcome" aria-expanded="false">
+                    </a>
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a id="change_password_button" class="dropdown-toggle" href="#" aria-expanded="false">
+                        密码修改
+                    </a>
+
+                    <!-- /.dropdown-tasks -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="/Gao_Home/ExitLogin" aria-expanded="false">
+                        退出
+                    </a>
+
+                </li>
+            </ul>
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+
+            <div class="sidebar-collapse">
+                <ul class="nav">
+                    <li>
+                        <a class="active-menu" href="/Gao_JiaoWu/Student"><i class="fa fa-desktop"></i>学生列表</a>
+                    </li>
+                    <li>
+                        <a href="/Gao_JiaoWu/Professor"><i class="fa fa-qrcode"></i>教师列表</a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+
+            <div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h1>
+                            <label>学生列表</label>
+                        </h1>
+                    </div>
+                </div>
+                <div class="row col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-sm-4">
+                        <div class="dataTables_filter" id="dataTables-example_filter">
+                            <label><input id="professorName" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="vmName" data-sort-order="desc" data-show-export="true" type="search"></label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="dataTables_filter" id="dataTables-example_length">
+                            <label>
+                                <select id="professAll" name="dataTables-example_length" class="form-control input-sm" aria-controls="dataTables-example">
+                                    <option value="0">全部学生</option>
+                                    <option value="1">没有提交信息学生</option>
+                                    <option value="2">没有提交志愿学生</option>
+                                    <option value="3">没有确定导师学生</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <button id="searchProfessors" class="btn btn-default">搜索</button>
+                    </div>
+
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <table id="professorTable" data-toggle="table" data-url="/Gao_JiaoWu/getStudents?p=0" data-row-style="rowStyle">
+                        <thead>
+                            <tr>
+                                <th data-field="Order">序号</th>
+                                <th data-field="StuID">学号</th>
+                                <th data-field="StuName">名字</th>
+                                <th data-field="StuInfoChecked">信息是否提交</th>
+                                <th data-field="StuWillChecked">是否两个志愿提交</th>
+                                <th data-field="StuFinalWill">最终确定导师</th>
+                                <th data-formatter="operateFormatter" data-align='center' data-events='operateEvents'>操作</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+
+
+
+
+            <!-- /. ROW  -->
+        </div>
+        <!-- /. PAGE INNER  -->
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+    <!--以下是更改密码模态框-->
+    <div class="modal" id="change_password_modal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4>更改密码</h4>
+                </div>
+                <div class="modal-body">
+                    <input id="password_input" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                    <button id="change_password_submit_button" type="button" class="btn btn-default" style="left:auto">
+                        更新
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--以上是更改密码模态框-->
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-table.js"></script>
+    <script src="~/Scripts/bootstrap-table-export.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="~/Scripts/jquery.metisMenu.js"></script>
+    <script src="~/Scripts/fileinput.min.js"></script>
+    <script src="~/Scripts/zh.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $("#change_password_button").click(function () {
+                $("#change_password_modal").modal('show');
+            })
+
+            $("#change_password_submit_button").click(function () {
+                var data = {
+                    'password': $("#password_input").val(),
+                }
+
+                $.post("/Gao_Home/changePassword", data, function (rel) {
+                    alert(rel);
+                    $("#change_password_modal").modal('hide');
+                })
+            })
+
+
+
+            var $table = $('#professorTable');
+            $("#searchProfessors").click(function () {
+                $table.bootstrapTable('refresh', { url: '/Gao_Jiaowu/searchStudents?name=' + $('#professorName').val() + '&p=' + $("#professAll").val() });
+            });
+            initJaowu();
+
+
+         /*   var getProfessors = function () {
+                var professors;
+                var param = {
+                    'professorName':$('#professorName').val(),
+                    'p': $("#professAll").val()
+                };
+                $.post("/Gao_Admin/searchProfessors", param, function (data) {
+                    professors = data;
+                });
+                return professors;
+            }
+            */
+        })
+
+        var initJaowu = function () {
+            var s = document.cookie.split("=");
+            var type = s[s.length - 1];
+            if (type == 1) {
+                $("#timesetting").remove();
+                $("#uploadProfessors").remove();
+                $("#addStudent").remove();
+                $("#welcome").text("欢迎登陆 教务教师");
+                $("#jiaowuinfo").remove();
+            } else {
+                $("#welcome").text("欢迎登陆 管理员");
+            }
+        };
+
+        function rowStyle(row, index) {
+            var style = {};
+            style = { css: { 'font-size': 'small' } };
+            return style;
+
+        }
+
+        function operateFormatter(value, row, index) {
+
+            return [
+                  '<button type="button" class="btn btn-info"> 查看</button> '
+            ].join('');
+        }
+
+        window.operateEvents = {
+            'click .btn-info': function (e, value, row, index) {
+                //  console.log(row);
+                window.location.href = "/Gao_JiaoWu/StudentInfo?id=" + row["StuID"];
+            },
+
+            
+        };
+    </script>
+
+</body>
+
+</html>
