@@ -106,10 +106,10 @@
                             <p><label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学生申报阶段时间</label>  </p>
                         </div>
                         <div class="col-sm-4">
-                            <input name="InfoStart" type="date" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                            <input name="InfoStart" type="date" value ="@ViewData["InfoStart"].ToString().Substring(0,10).Replace('/','-')" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
                         </div>
                         <div class="col-sm-4">
-                            <input name="InfoEnd" type="date" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                            <input name="InfoEnd" type="date" required  value="@ViewData["InfoEnd"].ToString().Substring(0,10).Replace('/','-')" class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
                         </div>
                     </div>
                     <div class="row">
@@ -117,10 +117,10 @@
                             <p><label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第一轮导师选择时间</label>  </p>
                         </div>
                         <div class="col-sm-4">
-                            <input name="FirstStart" type="date" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                            <input name="FirstStart" type="date" required value="@ViewData["FirstStart"].ToString().Substring(0,10).Replace('/','-')" class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
                         </div>
                         <div class="col-sm-4">
-                            <input name="FirstEnd" type="date" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                            <input name="FirstEnd" type="date" required value="@ViewData["FirstEnd"].ToString().Substring(0,10).Replace('/','-')" class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
                         </div>
                     </div>
                     <div class="row">
@@ -128,10 +128,10 @@
                             <p><label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第二轮导师选择时间</label>  </p>
                         </div>
                         <div class="col-sm-4">
-                            <input name="SecondStart" type="date" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                            <input name="SecondStart" type="date" required value="@ViewData["SecondStart"].ToString().Substring(0,10).Replace('/','-')" class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
                         </div>
                         <div class="col-sm-4">
-                            <input name="SecondEnd" type="date" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                            <input name="SecondEnd" type="date" required value="@ViewData["SecondEnd"].ToString().Substring(0,10).Replace('/','-')" class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
                         </div>
                     </div>
 

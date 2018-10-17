@@ -48,7 +48,7 @@
                 </li>
                 <!-- /.dropdown -->
                 <li class="dropdown">
-                    <a class="dropdown-toggle" href="Gao_Home/ExitLogin" aria-expanded="false">
+                    <a class="dropdown-toggle" href="/Gao_Home/ExitLogin" aria-expanded="false">
                         退出
                     </a>
 
@@ -56,7 +56,7 @@
             </ul>
         </nav>
         <!--/. NAV TOP  -->
-        <nav class="navbar-default navbar-side" role="navigation">
+        <nav class="navbar-default navbar-side" role="navigation" style="top:60px">
 
             <div class="sidebar-collapse">
                 <ul class="nav">
@@ -103,11 +103,11 @@
                                 <th data-field="StuID">学号</th>
                                 <th data-field="StuName">姓名</th>
                                 <th data-field="Gender">性别</th>
-                                <th data-field="Gender">年龄</th>
+                                <th data-field="Age">年龄</th>
                                 <th data-field="StuMajor">专业方向</th>
                                 <th data-field="StuGraSchool">毕业学校</th>
-                                <th data-field="StuGraSchool">毕业专业</th>
-                                <th data-field="StuGraSchool">电子邮箱</th>
+                                <th data-field="StuGraMajor">毕业专业</th>
+                                <th data-field="StuMail">电子邮箱</th>
                                 <th data-formatter="operateFormatter" data-align='center' data-events='operateEvents'>操作</th>
                             </tr>
                         </thead>
@@ -234,7 +234,7 @@
         function operateFormatter(value, row, index) {
 
             return [
-                  '<button type="button" class="btn btn-info">查看</button> ',
+                '<a type="button" href="' + row["StuResumeUrl"]+'" class="btn btn-info">下载简历</a> ',
                   '<button type="button" class="btn btn-select">选择</button> ',
             ].join('');
         }
@@ -247,10 +247,6 @@
         }
 
         window.operateEvents = {
-            'click .btn-info': function (e, value, row, index) {
-                //  console.log(row);
-                window.location.href = "/GAO_Professor/Student?id=" + row["StuID"];
-            },
             'click .btn-select': function (e, value, row, index) {
                 //  console.log(row);
                 var data = {
@@ -260,7 +256,9 @@
                     alert(rel);
                     var num = parseInt($("#selectNum").text());
                     $("#selectNum").text(num - 1);
-                    $('#selectedTable').bootstrapTable('refresh', { url: '/GAO_Professor/getStudentsOfProfessorToStudent' });
+                    window.location.reload();
+                    //$('#waitSelectTable').bootstrapTable('refresh', { url: '/GAO_Professor/getStudents' });
+                    //$('#selectedTable').bootstrapTable('refresh', { url: '/GAO_Professor/getStudentsOfProfessorToStudent' });
                 })
             },
         };

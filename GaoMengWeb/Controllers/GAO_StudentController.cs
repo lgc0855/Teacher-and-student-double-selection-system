@@ -43,6 +43,9 @@ namespace GaoMengWeb.Controllers
                 ViewData["StuMail"] = s.StuMail;
                 ViewData["StuResumeUrl"] = s.StuResumeUrl;
 
+                ViewData["StuGraSchool"] = s.StuGraSchool;
+                ViewData["StuGraMajor"] = s.StuGraMajor;
+
                 ViewData["InfoEnd"] = dbhelper.getInfoEnd();
             }
             else
@@ -62,7 +65,7 @@ namespace GaoMengWeb.Controllers
             }
             else
             {
-                ViewData["userId"] = int.Parse(accountCookie["userId"]);
+                ViewData["userId"] = accountCookie["userId"];
             }
             int st = dbhelper.testSettingTime();
             ViewData["TestSettingTime"] = st;
@@ -83,6 +86,28 @@ namespace GaoMengWeb.Controllers
             {
                 Student s = list[0];
                 ViewData["StuName"] = s.StuName;
+                if(s.StuFirstWill!=0)
+                {
+                    List<Professor> proList = dbhelper.getProfessorByUserId(s.StuFirstWill);
+                    if(proList.Count > 0)
+                    {
+                        Professor pro1 = proList[0];
+                        ViewData["firstProName"] = pro1.ProName;
+                        ViewData["firstUserId"] = pro1.UserID;
+
+                    }
+                }
+                if (s.StuSecondWill != 0)
+                {
+                    List<Professor> proList = dbhelper.getProfessorByUserId(s.StuSecondWill);
+                    if (proList.Count > 0)
+                    {
+                        Professor pro2 = proList[0];
+                        ViewData["secondProName"] = pro2.ProName;
+                        ViewData["secondUserId"] = pro2.UserID;
+
+                    }
+                }
             }
             else
             {
@@ -95,8 +120,10 @@ namespace GaoMengWeb.Controllers
             }
             else
             {
-                ViewData["userId"] = int.Parse(accountCookie["userId"]);
+                ViewData["userId"] = accountCookie["userId"];
             }
+            
+
             return View();
         }
 
@@ -132,7 +159,7 @@ namespace GaoMengWeb.Controllers
             }
             else
             {
-                ViewData["userId"] = int.Parse(accountCookie["userId"]);
+                ViewData["userId"] = accountCookie["userId"];
             }
             return View();
         }
@@ -171,7 +198,7 @@ namespace GaoMengWeb.Controllers
             }
             else
             {
-                ViewData["userId"] = int.Parse(accountCookie["userId"]);
+                ViewData["userId"] = accountCookie["userId"];
                 string userId =accountCookie["userId"];
                 List<Student> list = dbhelper.getStudentByStuID(userId);
                 if (list.Count > 0)
@@ -226,9 +253,9 @@ namespace GaoMengWeb.Controllers
         }
 
 
-        public ActionResult saveInfo(string StuName, string StuID, int Age, int StuMajorID, string StuTel, string StuMail, bool StuIfWork)
+        public ActionResult saveInfo(string StuName, string StuID, int Age, int StuMajorID, string StuTel, string StuMail, bool StuIfWork,string StuGraSchool,string StuGraMajor)
         {
-            bool b = dbhelper.updateStudent(StuName, StuID, Age, StuMajorID, StuTel, StuMail, StuIfWork);
+            bool b = dbhelper.updateStudent(StuName, StuID, Age, StuMajorID, StuTel, StuMail, StuIfWork, StuGraSchool,StuGraMajor);
             return RedirectToAction("Index", "GAO_Student");
         }
 

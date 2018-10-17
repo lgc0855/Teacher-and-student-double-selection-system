@@ -11,16 +11,16 @@
     <div class="app-location">
 
         <div class="location"><img src="~/Content/image/logo.png" class="img-responsive" alt="" /></div>
-        <h2>欢迎登陆师生双选系统</h2>
+        <h2>欢迎登录师生双选系统</h2>
         <form action="/Gao_Home/DoLogin">
             <input type="text" required="required" name="userId" class="text" placeholder="请输入学号或教师编号" >
             <input type="password" required="required" name="Passwd" placeholder="请输入密码" onfocus="this.value = '';" >
             <br />
             <span style="color:white;">
-                <input type="radio" name="userType" value="3">学生
+                <input type="radio" name="userType" value="3" checked>学生
                 <input type="radio" name="userType" value="2">导师
                 <input type="radio" name="userType" value="1">教务
-                <input type="radio" name="userType" value="0" checked>管理员
+                <input type="radio" name="userType" value="0" >管理员
             </span>
                 <div class="submit"><input type="submit" value="登录"></div>
 

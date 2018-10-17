@@ -438,6 +438,12 @@ namespace GaoMengWeb.Models
             List<Professor> list = db.Professors.Where(s => s.ProID == id).ToList();
             return list;
         }
+        public List<Professor> getProfessorByUserId(int id)
+        {
+            SsContext db = new SsContext();
+            List<Professor> list = db.Professors.Where(s => s.UserID == id).ToList();
+            return list;
+        }
         public List<JiaoWu> getJiaoWuByJId(int id)
         {
             SsContext db = new SsContext();
@@ -534,7 +540,7 @@ namespace GaoMengWeb.Models
             return ps;
         }
 
-        public bool updateStudent(string StuName, string StuID, int Age, int StuMajorID, string StuTel, string StuMail, bool StuIfWork)
+        public bool updateStudent(string StuName, string StuID, int Age, int StuMajorID, string StuTel, string StuMail, bool StuIfWork,string StuGraSchool,string StuGraMajor)
         {
             SsContext db = new SsContext();
             List<Student> list = db.Students.Where(s => s.StuID == StuID).ToList();
@@ -550,6 +556,8 @@ namespace GaoMengWeb.Models
                 s.StuTel = StuTel;
                 s.StuMail = StuMail;
                 s.StuIfWork = StuIfWork;
+                s.StuGraSchool = StuGraSchool;
+                s.StuGraMajor = StuGraMajor;
                 db.SaveChanges();
                 return true;
             }
@@ -821,6 +829,7 @@ namespace GaoMengWeb.Models
             Professor p = plist[0];
             return p;
         }
+
 
         public List<JiaoWu> getJiaoWus()
         {

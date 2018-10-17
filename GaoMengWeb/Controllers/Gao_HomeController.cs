@@ -26,6 +26,14 @@ namespace GaoMengWeb.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public ActionResult Error()
+        {
+
+            return View();
+        }
+
+        [AllowAnonymous]
         public ActionResult Login(string error ="")
         {
 
@@ -33,6 +41,7 @@ namespace GaoMengWeb.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult DoLogin(string userId = "-1", string Passwd="0000" , int userType=-1)
         {
             if (ModelState.IsValid)
@@ -201,9 +210,9 @@ namespace GaoMengWeb.Controllers
         {
             string rel = "";
             HttpCookie accountCookie = Request.Cookies["Account"];
-            int id = int.Parse(accountCookie["userId"]);
+            string id = accountCookie["userId"];
             int type = int.Parse(accountCookie["type"]);
-            bool b = dbhelper.changePassword(type, id.ToString(), password);
+            bool b = dbhelper.changePassword(type, id, password);
             if (b)
             {
                 rel = "修改成功";

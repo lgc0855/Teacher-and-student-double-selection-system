@@ -145,6 +145,7 @@ namespace GaoMengWeb.Controllers
                 ps.StuID = s.StuID;
                 ps.StuName = s.StuName;
                 // 0软件工程与管理 1虚拟现实与应用 2人工智能 3大数据技术与应用
+                ps.StuResumeUrl = s.StuResumeUrl == null ? "" : s.StuResumeUrl;
                 if (s.StuMajorID == 0)
                 {
                     ps.StuMajor = "软件工程与管理";
@@ -390,6 +391,7 @@ namespace GaoMengWeb.Controllers
             public string Gender { get; set; } //性别
             public string StuGraSchool { get; set; }//毕业学校
             public string StuMajor { get; set; }//方向 暂定 0软件工程与管理 1虚拟现实与应用 2人工智能 3大数据技术与应用
+            public string StuResumeUrl { get; set; }
         }
     }
 }

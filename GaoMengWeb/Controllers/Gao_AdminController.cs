@@ -802,6 +802,7 @@ namespace GaoMengWeb.Controllers
                     ap.ProMaxNum = t.ProMaxNum;
                     ap.ProName = t.ProName;
                     ap.ProNum = t.ProNum;
+                    ap.ProInfoUrl = t.ProInfoUrl;
                     if(t.ProTitle == 0)
                     {
                         ap.ProTitle = "讲师";
@@ -1332,6 +1333,8 @@ namespace GaoMengWeb.Controllers
             public string ProTitle { set; get; }
             public int ProMaxNum { set; get; }
             public int ProNum { set; get; }
+            public string ProInfoUrl { set; get; }
+
         }
 
         public class AdminStudent

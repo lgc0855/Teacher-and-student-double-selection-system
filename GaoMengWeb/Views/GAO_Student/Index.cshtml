@@ -57,7 +57,7 @@
             </ul>
         </nav>
         <!--/. NAV TOP  -->
-        <nav class="navbar-default navbar-side" role="navigation">
+        <nav class="navbar-default navbar-side" role="navigation" style="top:60px">
 
             <div class="sidebar-collapse">
                 <ul class="nav">
@@ -127,12 +127,12 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
-                            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学校 </label>
-                            <input name="StuMail" value="@ViewData["StuMail"]" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                            <label>本科毕业学校 </label>
+                            <input name="StuGraSchool" value="@ViewData["StuGraSchool"]" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
                         </div>
                         <div class="col-sm-6">
-                            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;专业 </label>
-                            <input name="StuTel" value="@ViewData["StuTel"]" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
+                            <label>本科毕业专业 </label>
+                            <input name="StuGraMajor" value="@ViewData["StuGraMajor"]" required class="send-text" style="margin-top: 10px; margin-left:20px; width: 200px;height: 34px;border-radius:3px ;  border: 1px solid rgb(204,204,204) ;">
                         </div>
                     </div>
                     <div class="row">
@@ -148,9 +148,9 @@
                 </form>
 
             </div>
-            <div class="row">
+            <div class="row" style="margin-top:35px;border-top:solid #999 1px;padding-top:20px">
                 <div class="col-sm-6">
-                    <label >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请上传个人简历（doc/decx,小于5M） </label>
+                    <label >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请上传个人简历（doc/docx,小于5M） </label>
                 </div>
                 <div class="col-sm-6">
                     <label style="visibility:hidden">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;隐藏 </label>
